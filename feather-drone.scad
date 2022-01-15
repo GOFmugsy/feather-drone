@@ -10,6 +10,14 @@ difference(){
 	filledScrewHole();
 	translate([-8.89, 25, 0])
 	filledScrewHole();
+	translate([10.5, 8, 0])
+	filledScrewHole();
+	translate([-10.5, 8, 0])
+	filledScrewHole();
+	translate([10.5, -8, 0])
+	filledScrewHole();
+	translate([-10.5, -8, 0])
+	filledScrewHole();
 }
 translate([8.89, -20, 0])
 screwHole();
@@ -18,6 +26,14 @@ screwHole();
 translate([8.89, 25, 0])
 screwHole();
 translate([-8.89, 25, 0])
+screwHole();
+translate([10.5, 8, 0])
+screwHole();
+translate([-10.5, 8, 0])
+screwHole();
+translate([10.5, -8, 0])
+screwHole();
+translate([-10.5, -8, 0])
 screwHole();
 
 module filledScrewHole() {
