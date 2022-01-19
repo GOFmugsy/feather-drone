@@ -20,6 +20,8 @@ cube([$baseWidth, $baseLength, $baseTh], center = true);
 difference() {
 	translate([0, 0, $riserHeight / 2])
 	cube([$riserWidth, $baseLength, $riserHeight], center = true);
+	translate([0, ($armWidth / 2) + (($baseLength / 2) - ($armWidth / 2)) / 2, $riserHeight - ($armTh / 2)])
+	cube([$riserWidth, ($baseLength / 2) - ($armWidth / 2), $armTh], center = true);
 }
 
 // draw arms
