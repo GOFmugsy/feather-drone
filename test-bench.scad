@@ -1,6 +1,6 @@
-rotate([180, 0, 0])
-translate([0, 0, -35])
-import("feather-drone--780c1d6.stl");
+// rotate([180, 0, 0])
+// translate([0, 0, -35])
+// import("feather-drone--780c1d6.stl");
 
 $riserHeight = 30;
 $riserWidth = 15;
