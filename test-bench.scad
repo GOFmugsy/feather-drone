@@ -8,7 +8,7 @@ $baseLength = 60;
 $baseWidth = 30;
 $baseTh = 5;
 
-$armLength = 28;
+$armLength = 30;
 $armWidth = 5;
 $armTh = 3;
 
