@@ -2,8 +2,6 @@
 // translate([0, 0, -35])
 // import("feather-drone--780c1d6.stl");
 
-$riserHeight = 30;
-$riserWidth = 15;
 $baseLength = 60;
 $baseWidth = 30;
 $baseTh = 5;
@@ -15,42 +13,30 @@ $armTh = 3;
 $clipHeight = 10;
 $clipReach = 3;
 
+$riserHeight = 30;
+$riserLength = $armWidth;
+$riserWidth = 15;
+$riserSlope = 5;
+
 // draw base
 translate([0, 0, $baseTh / 2])
 cube([$baseWidth, $baseLength, $baseTh], center = true);
 
 // draw riser
-difference() {
-	translate([0, 0, $riserHeight / 2])
-	cube([$riserWidth, $baseLength, $riserHeight], center = true);
-	translate([0, ($armWidth / 2) + (($baseLength / 2) - ($armWidth / 2)) / 2, $riserHeight - ($armTh / 2)])
-	cube([$riserWidth, ($baseLength / 2) - ($armWidth / 2), $armTh], center = true);
-	translate([0, -1 * (($armWidth / 2) + (($baseLength / 2) - ($armWidth / 2)) / 2), $riserHeight - ($armTh / 2)])
-	cube([$riserWidth, ($baseLength / 2) - ($armWidth / 2), $armTh], center = true);
-	// cut a corner
-	translate([-$riserWidth / 2, 0, -$baseTh / 2])
-	rotate([90, 0, 90])
-	linear_extrude(height = $riserWidth)
-	polygon(points = [	[$baseLength / 2, $baseTh],
-				[$armWidth / 2, $riserHeight],
-				[$baseLength / 2, $riserHeight]]);
-	// cut the other corner
-	translate([$riserWidth / 2, 0, -$baseTh / 2])
-	rotate([90, 0, -90])
-	linear_extrude(height = $riserWidth)
-	polygon(points = [	[$baseLength / 2, $baseTh],
-				[$armWidth / 2, $riserHeight],
-				[$baseLength / 2, $riserHeight]]);
+translate([0, 0, $baseTh - ($clipHeight / 2) + ($riserHeight / 2)])
+cube([$riserWidth, $riserLength, $riserHeight - $clipHeight / 2], center = true);
 
-	// cut hole in riser
-	translate([$riserWidth / 2, 0, 0])
-	rotate([0, -90, 0])
-	linear_extrude(height = $riserWidth)
-	polygon(points = [	[$riserHeight * 0.8, 0],
-				[$baseTh * 0.8, (-$baseLength / 2) * 0.8],
-				[$baseTh * 0.8, ($baseLength / 2) * 0.8]]);
+rotate([0, -90, 0])
+translate([$baseTh + $riserSlope, -$riserLength / 2, -$riserWidth / 2])
+linear_extrude($riserWidth)
+rotate(180)
+polygon(points = [[0, 0], [$riserSlope, 0], [$riserSlope, $riserSlope]]);
 
-}
+rotate([180, -90, 0])
+translate([$baseTh + $riserSlope, -$riserLength / 2, -$riserWidth / 2])
+linear_extrude($riserWidth)
+rotate(180)
+polygon(points = [[0, 0], [$riserSlope, 0], [$riserSlope, $riserSlope]]);
 
 // draw arms
 translate([$armLength / 2, 0, $riserHeight - ($armTh / 2)])
